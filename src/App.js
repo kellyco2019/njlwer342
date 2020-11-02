@@ -3,7 +3,26 @@ import React, { Component } from 'react';
 /// Modifica el componente para que se puedan agregar tareas
 
 class App extends Component {
-  render() {
+
+  state = {
+    input : "",
+  }
+  addTask = (task) => {  
+  this.setState({});  
+}
+  onKeyPress=(e) => {
+    if(e.key === 'Enter'){
+      this.addTask(this.state.input)
+    }
+}
+  onChange = (e) => {
+    this.setState({
+      input: e.target.value
+    })
+  }
+
+
+  render() { 
     return (
       <div className="wrapper">
         <div className="list">
@@ -11,10 +30,16 @@ class App extends Component {
           <ul className="todo">
             <li>Sacar la ropa</li>
             <li>Hacer la cama</li>
-            <li>Leer un rato</li>
+            <li>Leer un rato</li> 
+            {this.state.task && <li>{this.state.task}</li>}
           </ul>
-           <form>
-             <input type="text" id="new-task" placeholder="Ingresa una tarea y oprime Enter" />
+           <form onSubmit={ e => e.preventDefault()}>
+             <input type="text" id="new-task" 
+             placeholder="Ingresa una tarea y oprime Enter" 
+             onChange={this.onChange} 
+             value={this.state.input}
+             onKeyPress={this.onKeyPress}
+             />
            </form>
         </div>
       </div>
