@@ -6,13 +6,15 @@ class App extends Component {
 
   state = {
     input : "",
+    
   }
   addTask = (task) => {  
-  this.setState({});  
+  this.setState({task});  
 }
   onKeyPress=(e) => {
     if(e.key === 'Enter'){
       this.addTask(this.state.input)
+      this.setState({input: ""})
     }
 }
   onChange = (e) => {
